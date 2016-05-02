@@ -1,0 +1,66 @@
+PODS:
+  - AFNetworkActivityLogger (3.0.0):
+    - AFNetworking/NSURLSession (~> 3.0)
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - EasyTipView (0.1.8)
+  - Fusuma (0.3.8)
+  - GPUImage (0.1.7)
+  - LTMorphingLabel (0.2.0)
+  - PureLayout (3.0.1)
+  - SVProgressHUD (2.0.3)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - AFNetworkActivityLogger (from `https://github.com/AFNetworking/AFNetworkActivityLogger.git`,
+    branch `3_0_0`)
+  - AFNetworking
+  - EasyTipView
+  - Fusuma (from `https://github.com/cyhsutw/Fusuma.git`, branch `wwdc`)
+  - GPUImage
+  - LTMorphingLabel
+  - PureLayout
+  - SVProgressHUD
+  - SwiftyJSON
+
+EXTERNAL SOURCES:
+  AFNetworkActivityLogger:
+    :branch: '3_0_0'
+    :git: https://github.com/AFNetworking/AFNetworkActivityLogger.git
+  Fusuma:
+    :branch: wwdc
+    :git: https://github.com/cyhsutw/Fusuma.git
+
+CHECKOUT OPTIONS:
+  AFNetworkActivityLogger:
+    :commit: abc565fe804f210dfda3b028c9a64e7c32e44600
+    :git: https://github.com/AFNetworking/AFNetworkActivityLogger.git
+  Fusuma:
+    :commit: e50131e9a9c595e124c5a4b488421c73295a8fd5
+    :git: https://github.com/cyhsutw/Fusuma.git
+
+SPEC CHECKSUMS:
+  AFNetworkActivityLogger: e77f68d014becb33c4306a23f56a64906ff72670
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  EasyTipView: b4ea591d23b76d63d7b5680fd3edb07094318c9d
+  Fusuma: e54c4a1627c7faa26733b1354e8e959318b1f763
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0

@@ -1,0 +1,436 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B92BF38D4BDC7BDE69C1A20 /* Pods_Imaji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BB4E2E3E1573A5B488FC08 /* Pods_Imaji.framework */; };
+		550BD7731CD5D95600C4EA38 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550BD7721CD5D95600C4EA38 /* IntroductionViewController.swift */; };
+		550BD7771CD5DE7000C4EA38 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 550BD7761CD5DE7000C4EA38 /* UIImage+Color.m */; };
+		550BD7791CD626B500C4EA38 /* image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550BD7781CD626B500C4EA38 /* image@3x.png */; };
+		550BD77F1CD6277300C4EA38 /* image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550BD77E1CD6277300C4EA38 /* image@2x.png */; };
+		550BD7811CD6290F00C4EA38 /* imaji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550BD7801CD6290F00C4EA38 /* imaji@2x.png */; };
+		550BD7831CD6291D00C4EA38 /* imaji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550BD7821CD6291D00C4EA38 /* imaji@3x.png */; };
+		551AAD4D1CD1EB7E007AC6CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551AAD4C1CD1EB7E007AC6CC /* Assets.xcassets */; };
+		551AAD5B1CD1F1A9007AC6CC /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551AAD5A1CD1F1A9007AC6CC /* Photos.framework */; };
+		551AAD5D1CD1F1AF007AC6CC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551AAD5C1CD1F1AF007AC6CC /* CoreLocation.framework */; };
+		553BBC961CD275DC00A2E893 /* TextEmojiMapping.plist in Resources */ = {isa = PBXBuildFile; fileRef = 553BBC951CD275DC00A2E893 /* TextEmojiMapping.plist */; };
+		556BDFB91CD4832700D269C8 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556BDFB81CD4832700D269C8 /* Tools.swift */; };
+		557469E91CD21EBA00805E6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 551AAD4E1CD1EB7E007AC6CC /* LaunchScreen.storyboard */; };
+		557469EA1CD21EC100805E6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 551AAD491CD1EB7E007AC6CC /* Main.storyboard */; };
+		557469EC1CD2511500805E6A /* TextEmojiMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557469EB1CD2511500805E6A /* TextEmojiMapping.swift */; };
+		55B4D3481CD21AD200F597AB /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551AAD471CD1EB7E007AC6CC /* CameraViewController.swift */; };
+		55B4D34A1CD21AE700F597AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551AAD451CD1EB7E007AC6CC /* AppDelegate.swift */; };
+		55B4D34B1CD21AE700F597AB /* VisionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551AAD5E1CD1F6B1007AC6CC /* VisionAPIManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		118168EEE6FF7E7B2BDB8163 /* Pods-Imaji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imaji.release.xcconfig"; path = "Pods/Target Support Files/Pods-Imaji/Pods-Imaji.release.xcconfig"; sourceTree = "<group>"; };
+		42B5B8FDA9D50D9ADC490674 /* Pods-Imaji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Imaji.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Imaji/Pods-Imaji.debug.xcconfig"; sourceTree = "<group>"; };
+		550BD7721CD5D95600C4EA38 /* IntroductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
+		550BD7741CD5DE7000C4EA38 /* Imaji-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Imaji-Bridging-Header.h"; sourceTree = "<group>"; };
+		550BD7751CD5DE7000C4EA38 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		550BD7761CD5DE7000C4EA38 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		550BD7781CD626B500C4EA38 /* image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image@3x.png"; sourceTree = "<group>"; };
+		550BD77E1CD6277300C4EA38 /* image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image@2x.png"; sourceTree = "<group>"; };
+		550BD7801CD6290F00C4EA38 /* imaji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imaji@2x.png"; sourceTree = "<group>"; };
+		550BD7821CD6291D00C4EA38 /* imaji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imaji@3x.png"; sourceTree = "<group>"; };
+		551AAD421CD1EB7E007AC6CC /* Imaji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Imaji.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		551AAD451CD1EB7E007AC6CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		551AAD471CD1EB7E007AC6CC /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CameraViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		551AAD4A1CD1EB7E007AC6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		551AAD4C1CD1EB7E007AC6CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		551AAD4F1CD1EB7E007AC6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		551AAD511CD1EB7E007AC6CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		551AAD5A1CD1F1A9007AC6CC /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		551AAD5C1CD1F1AF007AC6CC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		551AAD5E1CD1F6B1007AC6CC /* VisionAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VisionAPIManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		553BBC951CD275DC00A2E893 /* TextEmojiMapping.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TextEmojiMapping.plist; sourceTree = "<group>"; };
+		556BDFB81CD4832700D269C8 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		557469EB1CD2511500805E6A /* TextEmojiMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEmojiMapping.swift; sourceTree = "<group>"; };
+		ACADDF33A02455463AD27F9E /* Pods_Storytelling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Storytelling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4BB4E2E3E1573A5B488FC08 /* Pods_Imaji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imaji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		551AAD3F1CD1EB7E007AC6CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551AAD5D1CD1F1AF007AC6CC /* CoreLocation.framework in Frameworks */,
+				551AAD5B1CD1F1A9007AC6CC /* Photos.framework in Frameworks */,
+				1B92BF38D4BDC7BDE69C1A20 /* Pods_Imaji.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		551AAD391CD1EB7D007AC6CC = {
+			isa = PBXGroup;
+			children = (
+				551AAD441CD1EB7E007AC6CC /* Imaji */,
+				551AAD431CD1EB7E007AC6CC /* Products */,
+				7623E87CDB226F2C8DE68133 /* Pods */,
+				BF72B79B9182A0188D2D2B8D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		551AAD431CD1EB7E007AC6CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				551AAD421CD1EB7E007AC6CC /* Imaji.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		551AAD441CD1EB7E007AC6CC /* Imaji */ = {
+			isa = PBXGroup;
+			children = (
+				551AAD451CD1EB7E007AC6CC /* AppDelegate.swift */,
+				556BDFB81CD4832700D269C8 /* Tools.swift */,
+				551AAD471CD1EB7E007AC6CC /* CameraViewController.swift */,
+				550BD7721CD5D95600C4EA38 /* IntroductionViewController.swift */,
+				551AAD491CD1EB7E007AC6CC /* Main.storyboard */,
+				551AAD4C1CD1EB7E007AC6CC /* Assets.xcassets */,
+				551AAD4E1CD1EB7E007AC6CC /* LaunchScreen.storyboard */,
+				550BD77E1CD6277300C4EA38 /* image@2x.png */,
+				550BD7781CD626B500C4EA38 /* image@3x.png */,
+				550BD7801CD6290F00C4EA38 /* imaji@2x.png */,
+				550BD7821CD6291D00C4EA38 /* imaji@3x.png */,
+				551AAD511CD1EB7E007AC6CC /* Info.plist */,
+				551AAD5E1CD1F6B1007AC6CC /* VisionAPIManager.swift */,
+				557469EB1CD2511500805E6A /* TextEmojiMapping.swift */,
+				553BBC951CD275DC00A2E893 /* TextEmojiMapping.plist */,
+				550BD7751CD5DE7000C4EA38 /* UIImage+Color.h */,
+				550BD7761CD5DE7000C4EA38 /* UIImage+Color.m */,
+				550BD7741CD5DE7000C4EA38 /* Imaji-Bridging-Header.h */,
+			);
+			path = Imaji;
+			sourceTree = "<group>";
+		};
+		7623E87CDB226F2C8DE68133 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42B5B8FDA9D50D9ADC490674 /* Pods-Imaji.debug.xcconfig */,
+				118168EEE6FF7E7B2BDB8163 /* Pods-Imaji.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BF72B79B9182A0188D2D2B8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				551AAD5C1CD1F1AF007AC6CC /* CoreLocation.framework */,
+				551AAD5A1CD1F1A9007AC6CC /* Photos.framework */,
+				ACADDF33A02455463AD27F9E /* Pods_Storytelling.framework */,
+				C4BB4E2E3E1573A5B488FC08 /* Pods_Imaji.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		551AAD411CD1EB7E007AC6CC /* Imaji */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 551AAD541CD1EB7E007AC6CC /* Build configuration list for PBXNativeTarget "Imaji" */;
+			buildPhases = (
+				7C29EBCCA37F41D20799B74B /* Check Pods Manifest.lock */,
+				551AAD3E1CD1EB7E007AC6CC /* Sources */,
+				551AAD3F1CD1EB7E007AC6CC /* Frameworks */,
+				551AAD401CD1EB7E007AC6CC /* Resources */,
+				5F70AFD150FD1526DFDF68F1 /* Embed Pods Frameworks */,
+				D1933C3BF112E69FEEAA16E3 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Imaji;
+			productName = Storytelling;
+			productReference = 551AAD421CD1EB7E007AC6CC /* Imaji.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		551AAD3A1CD1EB7D007AC6CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = cyhsu;
+				TargetAttributes = {
+					551AAD411CD1EB7E007AC6CC = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 551AAD3D1CD1EB7D007AC6CC /* Build configuration list for PBXProject "Imaji" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 551AAD391CD1EB7D007AC6CC;
+			productRefGroup = 551AAD431CD1EB7E007AC6CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				551AAD411CD1EB7E007AC6CC /* Imaji */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		551AAD401CD1EB7E007AC6CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				557469EA1CD21EC100805E6A /* Main.storyboard in Resources */,
+				553BBC961CD275DC00A2E893 /* TextEmojiMapping.plist in Resources */,
+				550BD7811CD6290F00C4EA38 /* imaji@2x.png in Resources */,
+				557469E91CD21EBA00805E6A /* LaunchScreen.storyboard in Resources */,
+				551AAD4D1CD1EB7E007AC6CC /* Assets.xcassets in Resources */,
+				550BD7791CD626B500C4EA38 /* image@3x.png in Resources */,
+				550BD7831CD6291D00C4EA38 /* imaji@3x.png in Resources */,
+				550BD77F1CD6277300C4EA38 /* image@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F70AFD150FD1526DFDF68F1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imaji/Pods-Imaji-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C29EBCCA37F41D20799B74B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D1933C3BF112E69FEEAA16E3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imaji/Pods-Imaji-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		551AAD3E1CD1EB7E007AC6CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55B4D34A1CD21AE700F597AB /* AppDelegate.swift in Sources */,
+				55B4D34B1CD21AE700F597AB /* VisionAPIManager.swift in Sources */,
+				550BD7771CD5DE7000C4EA38 /* UIImage+Color.m in Sources */,
+				557469EC1CD2511500805E6A /* TextEmojiMapping.swift in Sources */,
+				55B4D3481CD21AD200F597AB /* CameraViewController.swift in Sources */,
+				550BD7731CD5D95600C4EA38 /* IntroductionViewController.swift in Sources */,
+				556BDFB91CD4832700D269C8 /* Tools.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		551AAD491CD1EB7E007AC6CC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				551AAD4A1CD1EB7E007AC6CC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		551AAD4E1CD1EB7E007AC6CC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				551AAD4F1CD1EB7E007AC6CC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		551AAD521CD1EB7E007AC6CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		551AAD531CD1EB7E007AC6CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		551AAD551CD1EB7E007AC6CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42B5B8FDA9D50D9ADC490674 /* Pods-Imaji.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Imaji/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.cyhsu.Imaji;
+				PRODUCT_NAME = Imaji;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Imaji/Imaji-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		551AAD561CD1EB7E007AC6CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 118168EEE6FF7E7B2BDB8163 /* Pods-Imaji.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Imaji/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.cyhsu.Imaji;
+				PRODUCT_NAME = Imaji;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Imaji/Imaji-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		551AAD3D1CD1EB7D007AC6CC /* Build configuration list for PBXProject "Imaji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				551AAD521CD1EB7E007AC6CC /* Debug */,
+				551AAD531CD1EB7E007AC6CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		551AAD541CD1EB7E007AC6CC /* Build configuration list for PBXNativeTarget "Imaji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				551AAD551CD1EB7E007AC6CC /* Debug */,
+				551AAD561CD1EB7E007AC6CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 551AAD3A1CD1EB7D007AC6CC /* Project object */;
+}
