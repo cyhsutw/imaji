@@ -25,6 +25,7 @@
 		55B4D3481CD21AD200F597AB /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551AAD471CD1EB7E007AC6CC /* CameraViewController.swift */; };
 		55B4D34A1CD21AE700F597AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551AAD451CD1EB7E007AC6CC /* AppDelegate.swift */; };
 		55B4D34B1CD21AE700F597AB /* VisionAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551AAD5E1CD1F6B1007AC6CC /* VisionAPIManager.swift */; };
+		F61C38F71DC0364000BCD33A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61C38F61DC0364000BCD33A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		557469EB1CD2511500805E6A /* TextEmojiMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEmojiMapping.swift; sourceTree = "<group>"; };
 		ACADDF33A02455463AD27F9E /* Pods_Storytelling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Storytelling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BB4E2E3E1573A5B488FC08 /* Pods_Imaji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Imaji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F61C38F61DC0364000BCD33A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				551AAD451CD1EB7E007AC6CC /* AppDelegate.swift */,
+				F61C38F61DC0364000BCD33A /* Constants.swift */,
 				556BDFB81CD4832700D269C8 /* Tools.swift */,
 				551AAD471CD1EB7E007AC6CC /* CameraViewController.swift */,
 				550BD7721CD5D95600C4EA38 /* IntroductionViewController.swift */,
@@ -139,12 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 551AAD541CD1EB7E007AC6CC /* Build configuration list for PBXNativeTarget "Imaji" */;
 			buildPhases = (
-				7C29EBCCA37F41D20799B74B /* Check Pods Manifest.lock */,
+				7C29EBCCA37F41D20799B74B /* [CP] Check Pods Manifest.lock */,
 				551AAD3E1CD1EB7E007AC6CC /* Sources */,
 				551AAD3F1CD1EB7E007AC6CC /* Frameworks */,
 				551AAD401CD1EB7E007AC6CC /* Resources */,
-				5F70AFD150FD1526DFDF68F1 /* Embed Pods Frameworks */,
-				D1933C3BF112E69FEEAA16E3 /* Copy Pods Resources */,
+				5F70AFD150FD1526DFDF68F1 /* [CP] Embed Pods Frameworks */,
+				D1933C3BF112E69FEEAA16E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -162,11 +165,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = cyhsu;
 				TargetAttributes = {
 					551AAD411CD1EB7E007AC6CC = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -207,14 +211,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F70AFD150FD1526DFDF68F1 /* Embed Pods Frameworks */ = {
+		5F70AFD150FD1526DFDF68F1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,29 +226,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Imaji/Pods-Imaji-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7C29EBCCA37F41D20799B74B /* Check Pods Manifest.lock */ = {
+		7C29EBCCA37F41D20799B74B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D1933C3BF112E69FEEAA16E3 /* Copy Pods Resources */ = {
+		D1933C3BF112E69FEEAA16E3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +270,7 @@
 				55B4D3481CD21AD200F597AB /* CameraViewController.swift in Sources */,
 				550BD7731CD5D95600C4EA38 /* IntroductionViewController.swift in Sources */,
 				556BDFB91CD4832700D269C8 /* Tools.swift in Sources */,
+				F61C38F71DC0364000BCD33A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,8 +310,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -350,8 +357,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -370,6 +379,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -378,10 +388,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42B5B8FDA9D50D9ADC490674 /* Pods-Imaji.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Imaji/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.cyhsu.Imaji;
@@ -389,6 +401,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imaji/Imaji-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -396,16 +409,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 118168EEE6FF7E7B2BDB8163 /* Pods-Imaji.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Imaji/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.cyhsu.Imaji;
 				PRODUCT_NAME = Imaji;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Imaji/Imaji-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

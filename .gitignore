@@ -71,7 +71,7 @@ playground.xcworkspace
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
-Pods/
+# Pods/
 
 # Carthage
 #
@@ -138,7 +138,7 @@ Carthage/Build
 
 # fastlane
 #
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the 
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
@@ -176,5 +176,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-

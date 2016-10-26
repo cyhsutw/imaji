@@ -1,0 +1,6 @@
+framework module Pods_Imaji {
+  umbrella header "Pods-Imaji-umbrella.h"
+
+  export *
+  module * { export * }
+}

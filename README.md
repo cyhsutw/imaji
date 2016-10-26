@@ -7,4 +7,8 @@ Turn your photos into Imajis and let your friends guess what's inside!
 |:-----:|:-----:|
 | ![image](./assets/image.png) | ![imaji](./assets/imaji.png) |
 
-⚠️ This README is WIP ⚠️
+
+## Start Hacking
+
+1. Get an API key for Google Vision API: https://cloud.google.com/vision/
+2. Fill in your API Key 

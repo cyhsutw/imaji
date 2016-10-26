@@ -17,12 +17,12 @@ import SVProgressHUD
 class CameraViewController: UIViewController {
 
     enum FilterType {
-        case Dotted
-        case Squared
-        case Smeared
+        case dotted
+        case squared
+        case smeared
     }
     
-    private let cameraView = FusumaViewController()
+    fileprivate let cameraView = FusumaViewController()
     
     @IBOutlet weak var postEditTopBar: UIView?
     @IBOutlet weak var postEditBottomArea: UIView?
@@ -52,15 +52,15 @@ class CameraViewController: UIViewController {
     
     @IBOutlet weak var buttonsContainerView: UIView?
     
-    private var selectedEmojis = [String]()
-    private var detectiveIndex = 0
-    private var detectiveTimer: NSTimer?
-    private let detectives = ["🕵", "🕵🏾", "🕵🏼", "🕵🏿", "🕵🏻"]
+    fileprivate var selectedEmojis = [String]()
+    fileprivate var detectiveIndex = 0
+    fileprivate var detectiveTimer: Timer?
+    fileprivate let detectives = ["🕵", "🕵🏾", "🕵🏼", "🕵🏿", "🕵🏻"]
     
-    private var selectedImage: UIImage?
-    private var progressToolTip: EasyTipView?
+    fileprivate var selectedImage: UIImage?
+    fileprivate var progressToolTip: EasyTipView?
     
-    private var filter = FilterType.Dotted
+    fileprivate var filter = FilterType.dotted
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,38 +70,38 @@ class CameraViewController: UIViewController {
         
         cameraView.delegate = self
         addChildViewController(cameraView)
-        cameraView.didMoveToParentViewController(self)
+        cameraView.didMove(toParentViewController: self)
         
         view.addSubview(cameraView.view)
         cameraView.view.translatesAutoresizingMaskIntoConstraints = false
         cameraView.view.autoPinEdgesToSuperviewEdges()
         
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         
-        view.bringSubviewToFront(postEditTopBar!)
-        view.bringSubviewToFront(postEditBottomArea!)
+        view.bringSubview(toFront: postEditTopBar!)
+        view.bringSubview(toFront: postEditBottomArea!)
         
-        previewImageView?.superview?.hidden = true
-        view.bringSubviewToFront(previewImageView!.superview!)
+        previewImageView?.superview?.isHidden = true
+        view.bringSubview(toFront: previewImageView!.superview!)
         
-        filterSlider?.setThumbImage(UIImage(named: "slider_thumb"), forState: .Normal)
-        filterSlider?.addTarget(self, action: #selector(self.filterValueUpdated(_:)), forControlEvents: .ValueChanged)
+        filterSlider?.setThumbImage(UIImage(named: "slider_thumb"), for: UIControlState())
+        filterSlider?.addTarget(self, action: #selector(self.filterValueUpdated(_:)), for: .valueChanged)
         
-        sliderConfirmButton?.addTarget(self, action: #selector(self.saveFilterButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        sliderConfirmButton?.addTarget(self, action: #selector(self.saveFilterButtonPressed(_:)), for: .touchUpInside)
         
-        buttonsContainerView?.hidden = true
+        buttonsContainerView?.isHidden = true
         
         adjustDotFilterButton?.alpha = 0.0
         shareButton?.alpha = 0.0
         startOverButton?.alpha = 0.0
         
-        adjustDotFilterButton?.addTarget(self, action: #selector(self.adjustDotBtnPressed(_:)), forControlEvents: .TouchUpInside)
-        shareButton?.addTarget(self, action: #selector(self.shareButtonPressed(_:)), forControlEvents: .TouchUpInside)
-        startOverButton?.addTarget(self, action: #selector(self.resetButtonPressed(_:)), forControlEvents: .TouchUpInside)
+        adjustDotFilterButton?.addTarget(self, action: #selector(self.adjustDotBtnPressed(_:)), for: .touchUpInside)
+        shareButton?.addTarget(self, action: #selector(self.shareButtonPressed(_:)), for: .touchUpInside)
+        startOverButton?.addTarget(self, action: #selector(self.resetButtonPressed(_:)), for: .touchUpInside)
         
-        adjustDotFilterButton?.exclusiveTouch = true
-        shareButton?.exclusiveTouch = true
-        startOverButton?.exclusiveTouch = true
+        adjustDotFilterButton?.isExclusiveTouch = true
+        shareButton?.isExclusiveTouch = true
+        startOverButton?.isExclusiveTouch = true
         
         VisionAPIManager.sharedManager.delegate = self
     }
@@ -111,11 +111,11 @@ class CameraViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 
@@ -123,14 +123,14 @@ class CameraViewController: UIViewController {
 }
 
 extension CameraViewController {
-    func adjustDotBtnPressed(sender: AnyObject!) {
+    func adjustDotBtnPressed(_ sender: AnyObject!) {
         
         sliderConfirmContainerBottomSpace?.constant = 0.0
         
-        UIView.animateWithDuration(
-            0.375,
+        UIView.animate(
+            withDuration: 0.375,
             delay: 0.0,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.sliderContainer?.alpha = 1.0
                 self.sliderConfirmContainer?.setNeedsLayout()
@@ -142,21 +142,21 @@ extension CameraViewController {
             },
             completion: {
                 _ in
-                self.adjustDotFilterButton?.transform = CGAffineTransformMakeScale(0.0, 0.0)
-                self.shareButton?.transform = CGAffineTransformMakeScale(0.0, 0.0)
-                self.startOverButton?.transform = CGAffineTransformMakeScale(0.0, 0.0)
+                self.adjustDotFilterButton?.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+                self.shareButton?.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+                self.startOverButton?.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
             }
         )
         
     }
     
-    func shareButtonPressed(sender: AnyObject!) {
+    func shareButtonPressed(_ sender: AnyObject!) {
         
         let finalResultImage = drawEmojiOnImage(previewImageView!.image!)
         
         let sharer = UIActivityViewController(
             activityItems: [
-                self.selectedEmojis.joinWithSeparator(""),
+                self.selectedEmojis.joined(separator: ""),
                 finalResultImage
             ],
             applicationActivities: nil
@@ -165,49 +165,49 @@ extension CameraViewController {
         sharer.completionWithItemsHandler = {
             (type, completed, returnedItems, error) in
             if completed {
-                SVProgressHUD.showSuccessWithStatus(nil)
+                SVProgressHUD.showSuccess(withStatus: nil)
             } else {
                 if let _ = error {
-                    SVProgressHUD.showErrorWithStatus(nil)
+                    SVProgressHUD.showError(withStatus: nil)
                 }
             }
         }
         
         onMainThread {
-            self.presentViewController(sharer, animated: true, completion: nil)
+            self.present(sharer, animated: true, completion: nil)
         }
     }
     
-    func resetButtonPressed(sender: AnyObject!) {
+    func resetButtonPressed(_ sender: AnyObject!) {
         
-        postEditTopBarCenterHide?.active = true
-        postEditTopBarCenterShow?.active = false
+        postEditTopBarCenterHide?.isActive = true
+        postEditTopBarCenterShow?.isActive = false
         
-        postEditBottomAreaCenterHide?.active = true
-        postEditBottomAreaCenterShow?.active = false
+        postEditBottomAreaCenterHide?.isActive = true
+        postEditBottomAreaCenterShow?.isActive = false
         
-        cameraView.cameraView.didCaptureImage = false
+        cameraView.cameraView.restart()
         
         view.setNeedsLayout()
         
-        UIView.animateWithDuration(
-            0.375,
+        UIView.animate(
+            withDuration: 0.375,
             delay: 0.0,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.view.layoutIfNeeded()
                 self.previewImageView?.superview?.alpha = 0.0
             },
             completion: {
                 _ in
-                self.cameraView.view.userInteractionEnabled = true
-                self.buttonsContainerView?.hidden = true
+                self.cameraView.view.isUserInteractionEnabled = true
+                self.buttonsContainerView?.isHidden = true
                 self.previewImageView?.image = nil
                 self.selectedImage = nil
                 self.outputLabel?.text = nil
                 self.selectedEmojis = [String]()
                 self.detectiveLabel?.alpha = 1.0
-                self.previewImageView?.superview?.hidden = true
+                self.previewImageView?.superview?.isHidden = true
                 self.previewImageView?.superview?.alpha = 1.0
                 self.outputLabel?.text = nil
             }
@@ -217,26 +217,26 @@ extension CameraViewController {
 
 
 extension CameraViewController {
-    private func animateLoadingView() {
+    fileprivate func animateLoadingView() {
         
         resetDetectiveTimer()
         detectiveIndex = 0
         detectiveLabel?.text = detectives[detectiveIndex]
         
-        cameraView.view.userInteractionEnabled = false
+        cameraView.view.isUserInteractionEnabled = false
         
-        postEditTopBarCenterHide?.active = false
-        postEditTopBarCenterShow?.active = true
+        postEditTopBarCenterHide?.isActive = false
+        postEditTopBarCenterShow?.isActive = true
         
-        postEditBottomAreaCenterHide?.active = false
-        postEditBottomAreaCenterShow?.active = true
+        postEditBottomAreaCenterHide?.isActive = false
+        postEditBottomAreaCenterShow?.isActive = true
         
         view.setNeedsLayout()
         
-        UIView.animateWithDuration(
-            0.375,
+        UIView.animate(
+            withDuration: 0.375,
             delay: 0.0,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.view.layoutIfNeeded()
             },
@@ -249,18 +249,18 @@ extension CameraViewController {
         
     }
     
-    private func resetDetectiveTimer() {
+    fileprivate func resetDetectiveTimer() {
         if let timer = detectiveTimer {
             timer.invalidate()
         }
         detectiveTimer = nil
     }
     
-    private func startDetectiveTimer() {
+    fileprivate func startDetectiveTimer() {
         guard detectiveTimer == nil else { return }
         
-        detectiveTimer = NSTimer.scheduledTimerWithTimeInterval(
-            1.0,
+        detectiveTimer = Timer.scheduledTimer(
+            timeInterval: 1.0,
             target: self,
             selector: #selector(CameraViewController.detectiveTimerUpdated(_:)),
             userInfo: nil,
@@ -269,15 +269,15 @@ extension CameraViewController {
         detectiveTimer?.fire()
     }
     
-    func detectiveTimerUpdated(timer: AnyObject!) {
+    func detectiveTimerUpdated(_ timer: AnyObject!) {
         guard let displayLabel = detectiveLabel else { return }
         
         detectiveIndex = (detectiveIndex + 1) % detectives.count
         
-        UIView.transitionWithView(
-            displayLabel,
+        UIView.transition(
+            with: displayLabel,
             duration: 1.0,
-            options: .TransitionCrossDissolve,
+            options: .transitionCrossDissolve,
             animations: {
                 displayLabel.text = self.detectives[self.detectiveIndex]
             },
@@ -285,7 +285,7 @@ extension CameraViewController {
         )
     }
     
-    private func showToolTip() {
+    fileprivate func showToolTip() {
         if let toolTip = progressToolTip {
             toolTip.dismiss()
         }
@@ -298,21 +298,21 @@ extension CameraViewController {
 }
 
 extension CameraViewController: FusumaDelegate {
-    func fusumaImageSelected(image: UIImage) {
+    func fusumaImageSelected(_ image: UIImage) {
         
-        buttonsContainerView?.hidden = true
+        buttonsContainerView?.isHidden = true
         startOverButton?.alpha = 0.0
         shareButton?.alpha = 0.0
         adjustDotFilterButton?.alpha = 0.0
         
-        startOverButton?.transform = CGAffineTransformMakeScale(0.0, 0.0)
-        shareButton?.transform = CGAffineTransformMakeScale(0.0, 0.0)
-        adjustDotFilterButton?.transform = CGAffineTransformMakeScale(0.0, 0.0)
+        startOverButton?.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+        shareButton?.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+        adjustDotFilterButton?.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
         
         filterSlider?.value = 0.01
         selectedImage = image.fixImageOrientation()
         previewImageView?.image = selectedImage
-        previewImageView?.superview?.hidden = false
+        previewImageView?.superview?.isHidden = false
         VisionAPIManager.sharedManager.uploadImage(selectedImage!)
         
         animateLoadingView()
@@ -324,7 +324,7 @@ extension CameraViewController: FusumaDelegate {
 }
 
 extension CameraViewController: VisionAPIManagerDelgate {
-    func progressUpdated(progress: Double) {
+    func progressUpdated(_ progress: Double) {
         let actualP = progress * 0.95
         let k = actualP * (0.05 - 0.01) + 0.01
         onMainThread {
@@ -333,7 +333,7 @@ extension CameraViewController: VisionAPIManagerDelgate {
         }
     }
     
-    func completed(objects objects: [String], emotions: [Emotion]) {
+    func completed(objects: [String], emotions: [Emotion]) {
         
         var emojis = Set<String>()
         
@@ -343,7 +343,7 @@ extension CameraViewController: VisionAPIManagerDelgate {
         }
         
         objects.forEach {
-            $0.componentsSeparatedByString(" ").forEach {
+            $0.components(separatedBy: " ").forEach {
                 (str) in
                 if let e = EmojiOracle.sharedOracle.toEmoji(str) {
                     if emojis.count < 4 {
@@ -362,12 +362,12 @@ extension CameraViewController: VisionAPIManagerDelgate {
             let alert = UIAlertController(
                 title: "😔",
                 message: "Sorry, we can't find emojis for you.\nPlease try another photo.",
-                preferredStyle: .Alert
+                preferredStyle: .alert
             )
             
             let okAction = UIAlertAction(
                 title: "👌",
-                style: .Cancel,
+                style: .cancel,
                 handler: {
                     _ in
                     self.progressToolTip?.dismiss()
@@ -380,7 +380,7 @@ extension CameraViewController: VisionAPIManagerDelgate {
             
             alert.view.tintColor = BrandColor
             
-            presentViewController(
+            present(
                 alert,
                 animated: true,
                 completion: {
@@ -393,7 +393,7 @@ extension CameraViewController: VisionAPIManagerDelgate {
         if emojis.count == 4 {
             outputLabel?.text = "\(emoArr[0]) \(emoArr[1])\n\(emoArr[2]) \(emoArr[3])"
         } else {
-            outputLabel?.text = emojis.joinWithSeparator(" ")
+            outputLabel?.text = emojis.joined(separator: " ")
         }
         
         progressToolTip?.dismiss()
@@ -401,10 +401,10 @@ extension CameraViewController: VisionAPIManagerDelgate {
         
         sliderConfirmContainerBottomSpace?.constant = 0.0
         
-        UIView.animateWithDuration(
-            0.375,
+        UIView.animate(
+            withDuration: 0.375,
             delay: 0.0,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.detectiveLabel?.alpha = 0.0
                 self.sliderContainer?.alpha = 1.0
@@ -415,16 +415,16 @@ extension CameraViewController: VisionAPIManagerDelgate {
         )
     }
     
-    func failed(error: NSError) {
+    func failed(_ error: NSError) {
         let alert = UIAlertController(
             title: "😔",
             message: "Sorry, we've encountered some problems, would you mind checking your Internet connections and try again?",
-            preferredStyle: .Alert
+            preferredStyle: .alert
         )
         
         let okAction = UIAlertAction(
             title: "👌",
-            style: .Cancel,
+            style: .cancel,
             handler: {
                 _ in
                 self.progressToolTip?.dismiss()
@@ -437,7 +437,7 @@ extension CameraViewController: VisionAPIManagerDelgate {
         
         alert.view.tintColor = BrandColor
         
-        presentViewController(
+        present(
             alert,
             animated: true,
             completion: {
@@ -450,14 +450,14 @@ extension CameraViewController: VisionAPIManagerDelgate {
 
 extension CameraViewController {
     
-    func saveFilterButtonPressed(sender: AnyObject!) {
+    func saveFilterButtonPressed(_ sender: AnyObject!) {
         
         sliderConfirmContainerBottomSpace?.constant = -60.0
 
-        UIView.animateWithDuration(
-            0.375,
+        UIView.animate(
+            withDuration: 0.375,
             delay: 0.0,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.sliderContainer?.alpha = 0.0
                 self.sliderConfirmContainer?.setNeedsLayout()
@@ -466,53 +466,53 @@ extension CameraViewController {
             completion: nil
         )
         
-        buttonsContainerView?.hidden = false
+        buttonsContainerView?.isHidden = false
         
         startOverButton?.alpha = 0.0
         shareButton?.alpha = 0.0
         adjustDotFilterButton?.alpha = 0.0
         
-        UIView.animateWithDuration(
-            0.3,
+        UIView.animate(
+            withDuration: 0.3,
             delay: 0.1,
             usingSpringWithDamping: 0.5,
             initialSpringVelocity: 0.5,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.adjustDotFilterButton?.alpha = 1.0
-                self.adjustDotFilterButton?.transform = CGAffineTransformIdentity
+                self.adjustDotFilterButton?.transform = CGAffineTransform.identity
             },
             completion: nil
         )
         
-        UIView.animateWithDuration(
-            0.3,
+        UIView.animate(
+            withDuration: 0.3,
             delay: 0.2,
             usingSpringWithDamping: 0.5,
             initialSpringVelocity: 0.5,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.shareButton?.alpha = 1.0
-                self.shareButton?.transform = CGAffineTransformIdentity
+                self.shareButton?.transform = CGAffineTransform.identity
             },
             completion: nil
         )
         
-        UIView.animateWithDuration(
-            0.3,
+        UIView.animate(
+            withDuration: 0.3,
             delay: 0.3,
             usingSpringWithDamping: 0.5,
             initialSpringVelocity: 0.5,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.startOverButton?.alpha = 1.0
-                self.startOverButton?.transform = CGAffineTransformIdentity
+                self.startOverButton?.transform = CGAffineTransform.identity
             },
             completion: nil
         )
     }
     
-    func filterValueUpdated(sender: AnyObject!) {
+    func filterValueUpdated(_ sender: AnyObject!) {
         applyFilter()
     }
     
@@ -521,27 +521,27 @@ extension CameraViewController {
         let stillImageFilter = GPUImagePolkaDotFilter()
         stillImageFilter.fractionalWidthOfAPixel = CGFloat(filterSlider!.value)
         
-        stillImageSource.addTarget(stillImageFilter)
+        stillImageSource?.addTarget(stillImageFilter)
         stillImageFilter.useNextFrameForImageCapture()
-        stillImageSource.processImage()
+        stillImageSource?.processImage()
         
         let outcomeImage = stillImageFilter.imageFromCurrentFramebuffer()
         previewImageView?.image = outcomeImage
     }
     
-    private func drawEmojiOnImage(image: UIImage) -> UIImage {
+    fileprivate func drawEmojiOnImage(_ image: UIImage) -> UIImage {
         
-        let text: NSString = outputLabel!.text ?? ""
+        let text: NSString = outputLabel!.text as NSString? ?? ""
         
         
         let scale = image.size.width / view.frame.size.width
         let font = UIFont(name: outputLabel!.font!.fontName, size: outputLabel!.font!.pointSize * scale)!
-        let textFrame = CGRectApplyAffineTransform(outputLabel!.frame, CGAffineTransformMakeScale(scale, scale))
+        let textFrame = outputLabel!.frame.applying(CGAffineTransform(scaleX: scale, y: scale))
         
         UIGraphicsBeginImageContextWithOptions(image.size, true, 0.0)
-        image.drawInRect(CGRectMake(0.0, 0.0, image.size.width, image.size.height))
-        text.drawInRect(
-            textFrame,
+        image.draw(in: CGRect(x: 0.0, y: 0.0, width: image.size.width, height: image.size.height))
+        text.draw(
+            in: textFrame,
             withAttributes: [
                 NSFontAttributeName : font
             ]
@@ -550,7 +550,7 @@ extension CameraViewController {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext();
         
-        return newImage;
+        return newImage!;
     }
 }
 

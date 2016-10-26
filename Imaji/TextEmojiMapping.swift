@@ -13,9 +13,9 @@ class EmojiInfo {
 class EmojiOracle {
     static let sharedOracle = EmojiOracle()
 
-    private lazy var textEmojiMapping: [String : String] = {
-        if let path = NSBundle.mainBundle().pathForResource("TextEmojiMapping", ofType: "plist"),
-               dict = NSDictionary(contentsOfFile: path) as? [String : String] {
+    fileprivate lazy var textEmojiMapping: [String : String] = {
+        if let path = Bundle.main.path(forResource: "TextEmojiMapping", ofType: "plist"),
+               let dict = NSDictionary(contentsOfFile: path) as? [String : String] {
             return dict
         }
         return [String : String]()
@@ -27,7 +27,7 @@ class EmojiOracle {
         let _ = textEmojiMapping
     }
     
-    func toEmoji(text: String) -> String? {
+    func toEmoji(_ text: String) -> String? {
         return textEmojiMapping[text]
     }
 }

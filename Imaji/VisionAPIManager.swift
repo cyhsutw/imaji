@@ -11,12 +11,29 @@ import UIKit
 import Photos
 import AFNetworking
 import SwiftyJSON
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-func onBackgroundThread(block: () -> ()) {
-    dispatch_async(
-        dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-        block
-    )
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+func onBackgroundThread(_ block: @escaping () -> ()) {
+    DispatchQueue.global(qos: .default).async(execute: block)
 }
 
 enum Emotion: String {
@@ -27,9 +44,9 @@ enum Emotion: String {
 }
 
 protocol VisionAPIManagerDelgate: class {
-    func progressUpdated(progress: Double)
-    func completed(objects objects: [String], emotions: [Emotion])
-    func failed(error: NSError)
+    func progressUpdated(_ progress: Double)
+    func completed(objects: [String], emotions: [Emotion])
+    func failed(_ error: NSError)
 }
 
 class VisionAPIManager: NSObject {
@@ -37,20 +54,20 @@ class VisionAPIManager: NSObject {
 
     weak var delegate: VisionAPIManagerDelgate?
     
-    private let API_KEY = "PLACE_YOUR_API_KEY_HERE"
+    fileprivate let apiKey = Constants.GoogleVisionAPIKey
 
-    private lazy var networkManager: AFHTTPSessionManager = {
+    fileprivate lazy var networkManager: AFHTTPSessionManager = {
         
         let reqSerializer = AFJSONRequestSerializer()
         reqSerializer.setValue(
-            NSBundle.mainBundle().bundleIdentifier ?? "",
+            Bundle.main.bundleIdentifier ?? "",
             forHTTPHeaderField: "X-Ios-Bundle-Identifier"
         )
         
         let resSerializer = AFJSONResponseSerializer()
         
         let manager = AFHTTPSessionManager(
-            baseURL: NSURL(
+            baseURL: URL(
                 string: "https://vision.googleapis.com"
             )!
         )
@@ -67,40 +84,40 @@ class VisionAPIManager: NSObject {
 }
 
 extension VisionAPIManager {
-    func uploadImage(image: UIImage) {
+    func uploadImage(_ image: UIImage) {
         
         onBackgroundThread { 
             let thumbWidth: CGFloat = 800.0
             let thumbHeight: CGFloat = thumbWidth * image.size.height / image.size.width
             
-            let thumbnail = self.resizeImage(image, toSize: CGSizeMake(thumbWidth, thumbHeight))
+            let thumbnail = self.resizeImage(image, toSize: CGSize(width: thumbWidth, height: thumbHeight))
             self.sendRequest(encodedImage: self.base64EncodeImage(thumbnail))
         }
     }
     
-    private func resizeImage(image: UIImage, toSize size: CGSize) -> UIImage {
+    fileprivate func resizeImage(_ image: UIImage, toSize size: CGSize) -> UIImage {
         UIGraphicsBeginImageContext(size)
-        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage
+        return newImage!
     }
     
-    private func base64EncodeImage(image: UIImage) -> String {
+    fileprivate func base64EncodeImage(_ image: UIImage) -> String {
         let imagedata = UIImagePNGRepresentation(image)
         
         // Resize the image if it exceeds the 2MB API limit
-        if (imagedata?.length > 2097152) {
-            print("OMG WTF?")
+        if (imagedata?.count > 2097152) {
+            fatalError("Image size > 2 MB")
         }
         
-        return imagedata!.base64EncodedStringWithOptions(.EncodingEndLineWithCarriageReturn)
+        return imagedata!.base64EncodedString(options: .endLineWithCarriageReturn)
     }
     
-    private func sendRequest(encodedImage encodedImage: String) {
+    fileprivate func sendRequest(encodedImage: String) {
         
-        networkManager.POST(
-            "/v1/images:annotate?key=\(API_KEY)",
+        networkManager.post(
+            "/v1/images:annotate?key=\(apiKey)",
             parameters: [
                 "requests": [
                     "image": [
@@ -127,8 +144,7 @@ extension VisionAPIManager {
                 self?.delegate?.progressUpdated(progress.fractionCompleted)
             },
             success: {
-                (taks, result) in
-                print(result)
+                (task, result) in
                 
                 let json = JSON(result!)
                 let errorObject = json["error"]
@@ -191,8 +207,8 @@ extension VisionAPIManager {
                 }
             },
             failure: {
-                [weak self] (task, error) in
-                self?.delegate?.failed(error)
+                [weak self] (task: URLSessionDataTask?, error: Error) in
+                self?.delegate?.failed(error as NSError)
             }
         )
     }
