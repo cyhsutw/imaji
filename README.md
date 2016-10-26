@@ -11,4 +11,11 @@ Turn your photos into Imajis and let your friends guess what's inside!
 ## Start Hacking
 
 1. Get an API key for Google Vision API: https://cloud.google.com/vision/
-2. Fill in your API Key 
+2. Fill in your API Key in `Constants.swift`
+3. Install dependencies
+
+    ```sh
+    $ bundle install
+    $ pod install
+    ```
+4. Open `Imaji.xcworkspace`, build, and enjoy!
