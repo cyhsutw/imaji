@@ -24,20 +24,20 @@ class IntroductionViewController: UIViewController {
     @IBOutlet weak var imajiDefLabel: UITextView?
     
     
-    private let imageDef = "A visible impression displayed on a computer or video screen."
-    private let emojiDef = "A small digital image or icon used to express an idea or emotion in electronic communication."
-    private let imagiDef = "An image with dotted patterns and emojis.\nUsually serve as a riddle."
+    fileprivate let imageDef = "A visible impression displayed on a computer or video screen."
+    fileprivate let emojiDef = "A small digital image or icon used to express an idea or emotion in electronic communication."
+    fileprivate let imagiDef = "An image with dotted patterns and emojis.\nUsually serve as a riddle."
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView?.clipsToBounds = true
-        startButton?.backgroundColor = UIColor.clearColor()
+        startButton?.backgroundColor = UIColor.clear
         startButton?.clipsToBounds = true
-        startButton?.setBackgroundImage(UIImage(color: BrandColor), forState: .Normal)
-        startButton?.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        startButton?.setBackgroundImage(UIImage(color: BrandColor), for: UIControlState())
+        startButton?.setTitleColor(UIColor.white, for: UIControlState())
         startButton?.layer.cornerRadius = 20.0
         startButton?.alpha = 0.0
-        startButton?.addTarget(self, action: #selector(self.dismiss(_:)), forControlEvents: .TouchUpInside)
+        startButton?.addTarget(self, action: #selector(self.dismiss(_:)), for: .touchUpInside)
         
         imageView?.alpha = 0.0
         emojiLabel?.alpha = 0.0
@@ -53,10 +53,10 @@ class IntroductionViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        NSThread.sleepForTimeInterval(2.0)
+        Thread.sleep(forTimeInterval: 2.0)
         
         self.wordLabel?.text = "image"
         
@@ -64,10 +64,10 @@ class IntroductionViewController: UIViewController {
             self.typeLabel?.text = "noun"
         }
         
-        UIView.animateWithDuration(
-            1.0,
+        UIView.animate(
+            withDuration: 1.0,
             delay: 2.0,
-            options: .CurveEaseInOut,
+            options: UIViewAnimationOptions(),
             animations: {
                 self.imageDefLabel?.alpha = 1.0
                 self.imageView?.alpha = 1.0
@@ -78,10 +78,10 @@ class IntroductionViewController: UIViewController {
                     self.wordLabel?.text = "emoji"
                 }
                 
-                UIView.animateWithDuration(
-                    1.0,
+                UIView.animate(
+                    withDuration: 1.0,
                     delay: 3.0,
-                    options: .CurveEaseInOut,
+                    options: UIViewAnimationOptions(),
                     animations: {
                         self.imageDefLabel?.alpha = 0.0
                         self.emojiDefLabel?.alpha = 1.0
@@ -95,10 +95,10 @@ class IntroductionViewController: UIViewController {
                             self.wordLabel?.text = "imaji"
                         }
                         
-                        UIView.animateWithDuration(
-                            1.0,
+                        UIView.animate(
+                            withDuration: 1.0,
                             delay: 3.0,
-                            options: .CurveEaseInOut,
+                            options: UIViewAnimationOptions(),
                             animations: {
                                 self.emojiDefLabel?.alpha = 0.0
                                 self.imajiDefLabel?.alpha = 1.0
@@ -108,10 +108,10 @@ class IntroductionViewController: UIViewController {
                             completion: {
                                 _ in
                                 
-                                UIView.animateWithDuration(
-                                    1.0,
+                                UIView.animate(
+                                    withDuration: 1.0,
                                     delay: 2.0,
-                                    options: .CurveEaseInOut,
+                                    options: UIViewAnimationOptions(),
                                     animations: {
                                         self.startButton?.alpha = 1.0
                                     },
@@ -126,30 +126,26 @@ class IntroductionViewController: UIViewController {
         )
         
     }
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
-    func dismiss(sender: AnyObject!) {
-        let cam = storyboard!.instantiateViewControllerWithIdentifier("CamView")
-        presentViewController(cam, animated: true, completion: {
+    func dismiss(_ sender: AnyObject!) {
+        let cam = storyboard!.instantiateViewController(withIdentifier: "CamView")
+        present(cam, animated: true, completion: {
             self.imageView?.image = nil
             self.imajiImageView?.image = nil
             
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setBool(true, forKey: "didShowIntro")
+            let defaults = UserDefaults.standard
+            defaults.set(true, forKey: "didShowIntro")
             defaults.synchronize()
         })
     }
 }
 
-func delay(time: Double, _ block: (() -> ())) {
-    dispatch_after(
-        dispatch_time(
-            DISPATCH_TIME_NOW,
-            Int64(time * Double(NSEC_PER_SEC))
-        ),
-        dispatch_get_main_queue(),
-        block
+func delay(_ time: Double, _ block: @escaping (() -> ())) {
+    DispatchQueue.main.asyncAfter(
+        deadline: DispatchTime.now() + Double(Int64(time * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
+        execute: block
     )
 }

@@ -11,88 +11,88 @@ import UIKit
 
 
 extension UIColor {
-    class func hex (hex : NSString, alpha : CGFloat) -> UIColor {
-        let hexStr = hex.stringByReplacingOccurrencesOfString("#", withString: "")
-        let scanner = NSScanner(string: hexStr as String)
+    class func hex (_ hex : NSString, alpha : CGFloat) -> UIColor {
+        let hexStr = hex.replacingOccurrences(of: "#", with: "")
+        let scanner = Scanner(string: hexStr as String)
         var color: UInt32 = 0
-        if scanner.scanHexInt(&color) {
+        if scanner.scanHexInt32(&color) {
             let r = CGFloat((color & 0xFF0000) >> 16) / 255.0
             let g = CGFloat((color & 0x00FF00) >> 8) / 255.0
             let b = CGFloat(color & 0x0000FF) / 255.0
             return UIColor(red:r,green:g,blue:b,alpha:alpha)
         } else {
             print("invalid hex string", terminator: "")
-            return UIColor.whiteColor()
+            return UIColor.white
         }
     }
 }
 
 let BrandColor = UIColor.hex("#FB743B", alpha: 1.0)
 
-func onMainThread(block: (() -> ())) {
-    dispatch_async(dispatch_get_main_queue(), block)
+func onMainThread(_ block: @escaping (() -> ())) {
+    DispatchQueue.main.async(execute: block)
 }
 
 extension UIImage {
     func fixImageOrientation() -> UIImage {
         
-        if self.imageOrientation == UIImageOrientation.Up {
+        if self.imageOrientation == UIImageOrientation.up {
             return self
         }
         
-        var transform: CGAffineTransform = CGAffineTransformIdentity
+        var transform: CGAffineTransform = CGAffineTransform.identity
         
         switch self.imageOrientation {
-        case UIImageOrientation.Down, UIImageOrientation.DownMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
+        case UIImageOrientation.down, UIImageOrientation.downMirrored:
+            transform = transform.translatedBy(x: self.size.width, y: self.size.height)
+            transform = transform.rotated(by: CGFloat(M_PI))
             break
-        case UIImageOrientation.Left, UIImageOrientation.LeftMirrored:
-            transform = CGAffineTransformTranslate(transform, self.size.width, 0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+        case UIImageOrientation.left, UIImageOrientation.leftMirrored:
+            transform = transform.translatedBy(x: self.size.width, y: 0)
+            transform = transform.rotated(by: CGFloat(M_PI_2))
             break
-        case UIImageOrientation.Right, UIImageOrientation.RightMirrored:
-            transform = CGAffineTransformTranslate(transform, 0, self.size.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
+        case UIImageOrientation.right, UIImageOrientation.rightMirrored:
+            transform = transform.translatedBy(x: 0, y: self.size.height)
+            transform = transform.rotated(by: CGFloat(-M_PI_2))
             break
-        case UIImageOrientation.Up, UIImageOrientation.UpMirrored:
+        case UIImageOrientation.up, UIImageOrientation.upMirrored:
             break
         }
         
         switch self.imageOrientation {
-        case UIImageOrientation.UpMirrored, UIImageOrientation.DownMirrored:
-            CGAffineTransformTranslate(transform, self.size.width, 0)
-            CGAffineTransformScale(transform, -1, 1)
+        case UIImageOrientation.upMirrored, UIImageOrientation.downMirrored:
+            transform.translatedBy(x: self.size.width, y: 0)
+            transform.scaledBy(x: -1, y: 1)
             break
-        case UIImageOrientation.LeftMirrored, UIImageOrientation.RightMirrored:
-            CGAffineTransformTranslate(transform, self.size.height, 0)
-            CGAffineTransformScale(transform, -1, 1)
-        case UIImageOrientation.Up, UIImageOrientation.Down, UIImageOrientation.Left, UIImageOrientation.Right:
+        case UIImageOrientation.leftMirrored, UIImageOrientation.rightMirrored:
+            transform.translatedBy(x: self.size.height, y: 0)
+            transform.scaledBy(x: -1, y: 1)
+        case UIImageOrientation.up, UIImageOrientation.down, UIImageOrientation.left, UIImageOrientation.right:
             break
         }
         
-        let ctx:CGContextRef = CGBitmapContextCreate(nil, Int(self.size.width), Int(self.size.height), CGImageGetBitsPerComponent(self.CGImage), 0, CGImageGetColorSpace(self.CGImage), CGImageAlphaInfo.PremultipliedLast.rawValue)!
+        let ctx:CGContext = CGContext(data: nil, width: Int(self.size.width), height: Int(self.size.height), bitsPerComponent: self.cgImage!.bitsPerComponent, bytesPerRow: 0, space: self.cgImage!.colorSpace!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
         
-        CGContextConcatCTM(ctx, transform)
+        ctx.concatenate(transform)
         
         switch self.imageOrientation {
-        case UIImageOrientation.Left, UIImageOrientation.LeftMirrored, UIImageOrientation.Right, UIImageOrientation.RightMirrored:
-            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage)
+        case UIImageOrientation.left, UIImageOrientation.leftMirrored, UIImageOrientation.right, UIImageOrientation.rightMirrored:
+            ctx.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: self.size.height, height: self.size.width))
             break
         default:
-            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.width, self.size.height), self.CGImage)
+            ctx.draw(self.cgImage!, in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
             break
         }
         
-        let cgimg:CGImageRef = CGBitmapContextCreateImage(ctx)!
-        let img:UIImage = UIImage(CGImage: cgimg)
+        let cgimg:CGImage = ctx.makeImage()!
+        let img:UIImage = UIImage(cgImage: cgimg)
         
         return img
     }
 }
 
 extension Dictionary where Value : Comparable {
-    func sortedKeysByValues(isOrderedBefore: ((Value, Value) -> Bool)) -> [Key] {
-        return Array(keys).sort { isOrderedBefore(self[$0]!, self[$1]!) }
+    func sortedKeysByValues(_ isOrderedBefore: ((Value, Value) -> Bool)) -> [Key] {
+        return Array(keys).sorted { isOrderedBefore(self[$0]!, self[$1]!) }
     }
 }
